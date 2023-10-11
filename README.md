@@ -1,4 +1,6 @@
 # Project-i
-### 개발기간 2023-4-17 ~ 2023-10-10 (진행중)
-![1_git](https://github.com/Junhachoi-GameDav/Project-i/assets/87477736/9b5130fd-3e28-4ef5-b539-a971c1211d87)
-![back_git](https://github.com/Junhachoi-GameDav/Project-i/assets/87477736/9723517b-63fb-4710-b4e0-d60e6fb84c4b)
+### Info
+개발기간    : 2023-4-17 ~ 2023-10-10
+장르    : 액션 어드벤쳐(소울 라이크) 게임
+
+![test1_git](https://github.com/Junhachoi-GameDav/Project-i/assets/87477736/1e1f228f-a030-4bcf-8ccc-36eb019f2d73)
