@@ -11,8 +11,8 @@ public class playerData
     public float player_cur_hp =100;
     public float player_max_stemina =100;
     public float player_attck_power =2;
-    public int player_data_chip =1000;
-    public int player_heal_pack_max_num =5;
+    public int player_data_chip = 200;
+    public int player_heal_pack_max_num = 2;
     public int player_heal_power =30;
     public int player_pill_part_num =0;
     public int player_needed_datachip =0;
