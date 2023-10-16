@@ -5,8 +5,9 @@ public class boss_room : MonoBehaviour
 {
     public GameObject pill_part;
     public GameObject[] door_collider;
+    public Material[] door_materials;
     public BoxCollider this_box_collider;
-    public doors _doors;
+    public doors[] _doors;
     public door_in_checker _door_in_checker;
     public GameObject[] en_kyle_objs;
 
@@ -27,7 +28,13 @@ public class boss_room : MonoBehaviour
             ingame_mng._enemy.battle_start = true;
             ingame_mng._bg_sound.play_sounds("boss_in_battle");
             _door_in_checker.is_player_in = false;
-            _doors.close_doors();
+
+            for (int i = 0; i < _doors.Length; i++)
+            {
+                _doors[i].close_doors();
+                _doors[i].door_left.GetComponent<MeshRenderer>().material = door_materials[1];
+                _doors[i].door_right.GetComponent<MeshRenderer>().material = door_materials[1];
+            }
             this_box_collider.enabled = false;
             for (int i = 0; i < door_collider.Length; i++)
             {
@@ -52,6 +59,15 @@ public class boss_room : MonoBehaviour
                     door_collider[j].SetActive(true);
                 }
                 pill_part.SetActive(true);
+                for (int i = 0; i < _doors.Length; i++)
+                {
+                    _doors[i].door_left.GetComponent<MeshRenderer>().material = door_materials[0];
+                    _doors[i].door_right.GetComponent<MeshRenderer>().material = door_materials[0];
+                }
+                for (int i = 0; i < en_kyle_objs.Length; i++)
+                {
+                    en_kyle_objs[i].SetActive(true);
+                }
                 stop_while = true;
             }
         }
