@@ -1,5 +1,6 @@
 # Project-i
-![library_hero2_git](https://github.com/Junhachoi-GameDav/Project-I/assets/87477736/60c31c24-9e75-49cb-bb3f-53a01fca2763)
+![library_hero2_git](https://github.com/Junhachoi-GameDav/Project-I/assets/87477736/60c31c24-9e75-49cb-bb3f-53a01fca2763)<br>
+스팀 상점페이지 : https://store.steampowered.com/app/2641890/Project_I/
 ### Info
 - 개발기간    : 2023-4-17 ~ 2023-10-10<br>
 - 장르    : 액션 어드벤쳐(소울 라이크) 게임<br>
