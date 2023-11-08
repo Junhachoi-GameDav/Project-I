@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Collections;
+using System.IO;
 
 public class mainmenu_manager : MonoBehaviour
 {
@@ -10,9 +11,24 @@ public class mainmenu_manager : MonoBehaviour
     public Button option_btn;
     public GameObject apply_window;
 
+    public void connect_new_game_bool(bool value)
+    {
+        game_manager.Instance.save_mng.enable_new_game = value;
+    }
+    public void connect_load_game_bool(bool value)
+    {
+        game_manager.Instance.save_mng.enable_load_game = value;
+    }
     public void connect_option()
     {
         game_manager.Instance.setting_mng.setting_obj.SetActive(true);
+    }
+    public void connect_new_game(int num)
+    {
+        
+        game_manager.Instance.save_mng.delete_data(num);
+        game_manager.Instance.save_mng.slot(num);
+        game_manager.Instance.fade_mng.Fade();
     }
 
     public void connect_load_window()

@@ -65,7 +65,7 @@ public class en_guider : enemy_manager
 
     void talk()
     {
-        if (Input.GetKeyDown(key_setting.keys[key_action.INTERECTION]))
+        if (Input.GetKeyDown(key_setting.keys[key_action.INTERECTION]) && is_ready_talk)
         {
             if(ingame_mng.talk_mng.count == 0)
             {

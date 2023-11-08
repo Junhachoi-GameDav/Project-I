@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -36,6 +35,7 @@ public class setting_manager : MonoBehaviour
         resoultion_ui();
         Screen.fullScreenMode.Equals(FullScreenMode.FullScreenWindow);
         key_text();
+        StartCoroutine(ChangeRoutine(0));
     }
     public void is_setting_on_off(bool value)
     {

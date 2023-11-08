@@ -7,13 +7,13 @@ using System;
 
 public class playerData
 {
-    public float player_max_hp =100;
-    public float player_cur_hp =100;
-    public float player_max_stemina =100;
+    public float player_max_hp =120;
+    public float player_cur_hp =120;
+    public float player_max_stemina =150;
     public float player_attck_power =2;
-    public int player_data_chip = 200;
-    public int player_heal_pack_max_num = 2;
-    public int player_heal_power =30;
+    public int player_data_chip =1000;
+    public int player_heal_pack_max_num =4;
+    public int player_heal_power =40;
     public int player_pill_part_num =0;
     public int player_needed_datachip =0;
 
@@ -34,6 +34,7 @@ public class playerData
     public bool area5_pill_get;
     public bool area6_pill_get;
 
+    public bool is_opened;
     public bool is_ending;
 
     public string date_time;
@@ -42,18 +43,23 @@ public class playerData
 
 public class save_manager : MonoBehaviour
 {
-    public GameObject load_obj;
+    
     public playerData now_player = new playerData();
+    public Text[] slot_text;
+    public GameObject[] new_game_windows;
+    public GameObject load_obj;
 
     string path;
     int cur_slot;
 
-    public Text[] slot_text;
-
     bool[] savefile = new bool[3];
+    public bool enable_new_game;
+    public bool enable_load_game;
 
+    mainmenu_manager _mainmenu_mng;
     private void Awake()
     {
+        _mainmenu_mng =FindObjectOfType<mainmenu_manager>();
         //C:/Users/user_name/AppData/LocalLow/DefaultCompany/project_name
         path = Application.persistentDataPath + "/save";
     }
@@ -100,23 +106,51 @@ public class save_manager : MonoBehaviour
         now_player = new playerData();
     }
 
-
     public void slot(int num)
     {
         cur_slot = num;
-
-        if (savefile[num])
+        if (enable_new_game)
         {
-            load_data();
-            StartCoroutine(co_go_game());
+            if (savefile[num])
+            {
+                new_game_windows[num].SetActive(true);
+                game_manager.Instance.sound_mng.sm_ui_sound_play("button2_click");
+            }
+            else
+            {
+                save_data();
+                //go_game();
+                game_manager.Instance.fade_mng.Fade();
+                game_manager.Instance.sound_mng.sm_ui_sound_play("button3_click");
+                load_obj.SetActive(false);
+                StartCoroutine(co_go_game());
+            }
         }
-        else
+        else if (enable_load_game)
         {
-            save_data();
-            //go_game();
-            StartCoroutine(co_go_game());
+            if (savefile[num])
+            {
+                load_data();
+                game_manager.Instance.fade_mng.Fade();
+                game_manager.Instance.sound_mng.sm_ui_sound_play("button3_click");
+                load_obj.SetActive(false);
+                StartCoroutine(co_go_game());
+            }
+            else
+            {
+                save_data();
+                //go_game();
+                game_manager.Instance.fade_mng.Fade();
+                game_manager.Instance.sound_mng.sm_ui_sound_play("button3_click");
+                load_obj.SetActive(false);
+                StartCoroutine(co_go_game());
+            }
         }
-
+    }
+    public void mainmenu_start_all_false()
+    {
+        enable_new_game = false;
+        enable_load_game = false;
     }
 
     public void go_game()
@@ -128,6 +162,7 @@ public class save_manager : MonoBehaviour
     {
         yield return yield_cache.WaitForSeconds(1.8f);
         go_game();
+        mainmenu_start_all_false();
     }
 
     public void delete_data(int num)

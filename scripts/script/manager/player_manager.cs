@@ -55,6 +55,7 @@ public class player_manager : MonoBehaviour
     Vector3 hit_ef_pos4;
 
     float g_b_timer;
+    public float max_g_b_timer;
     int p_g_b_s_num = 0;
 
     private void Awake()
@@ -69,7 +70,7 @@ public class player_manager : MonoBehaviour
     private void Start()
     {
         hit_ef_pos_caching();
-        g_b_timer = 4f;
+        g_b_timer = max_g_b_timer;
     }
 
     private void Update()
@@ -127,6 +128,7 @@ public class player_manager : MonoBehaviour
             else
             {
                 player_move._anime.SetBool("hit", true); player_move._anime.SetTrigger("hit_trigger");
+                player_move._anime.SetBool("guard", false); player_move._anime.SetBool("guard_atk", false);
                 in_game_mng.ui_mng.heal_timer = 1;
 
                 //weapon의 타입에 따라 사운드 바뀜
@@ -247,10 +249,12 @@ public class player_manager : MonoBehaviour
         if (player_move._anime.GetBool("guard_break"))
         {
             in_game_mng.cams_mng.cams_lens_ef(0.5f);
+            in_game_mng.cams_mng.cams_lens_ef3(1);
         }
         else if(!in_game_mng.is_pause)
         {
             in_game_mng.cams_mng.cams_lens_ef(0);
+            in_game_mng.cams_mng.cams_lens_ef3(0);
         }
 
         //가드 파괴시 (잡기후 및 롤링후)
@@ -296,7 +300,7 @@ public class player_manager : MonoBehaviour
             {
                 player_stemina = 0;
                 p_g_b_s_num = 0;
-                g_b_timer = 4f;
+                g_b_timer = max_g_b_timer;
                 player_move._anime.SetBool("guard_break", false);
             }
         }
