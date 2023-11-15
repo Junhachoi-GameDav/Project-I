@@ -1,4 +1,3 @@
-
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,6 +10,7 @@ public class game_manager : MonoBehaviour
     public save_manager save_mng;
     public setting_manager setting_mng;
     public fade_manager fade_mng;
+    public key_manager key_mng;
 
     public bool is_apply_window_open;
 
@@ -30,6 +30,7 @@ public class game_manager : MonoBehaviour
         save_mng = GetComponentInChildren<save_manager>();
         setting_mng = GetComponentInChildren<setting_manager>();
         fade_mng = GetComponentInChildren<fade_manager>();
+        key_mng = GetComponentInChildren<key_manager>();
     }
     public static game_manager Instance
     {

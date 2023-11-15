@@ -1,4 +1,3 @@
-
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -47,17 +46,17 @@ public class key_manager : MonoBehaviour
     
     private void Awake()
     {
+        setting_mng = FindObjectOfType<setting_manager>();
+    }
+    public void key_apply() //한번만 실행하게 따로 함수로 만듬
+    {
         key_setting.keys.Clear();
         for (int i = 0; i < (int)key_action.key_count; i++)
         {
             key_setting.keys.Add((key_action)i, default_keys[i]);
         }
-        
     }
-    private void Start()
-    {
-        setting_mng = FindObjectOfType<setting_manager>();
-    }
+    
     //gui는 키입력 등의 이벤트가 발동시 호출되는 함수
     //키보드만 해당됨
     private void OnGUI()

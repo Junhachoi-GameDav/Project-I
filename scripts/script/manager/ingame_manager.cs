@@ -21,6 +21,7 @@ public class ingame_manager : MonoBehaviour
     lock_n_pill_manager lock_n_pill_mng;
     public anime_manager anime_mng;
     public bg_sound _bg_sound;
+    public for_opening _for_opening;
 
     [Header("ui")]
     public GameObject obj_ui;
@@ -56,6 +57,7 @@ public class ingame_manager : MonoBehaviour
         lock_n_pill_mng = FindObjectOfType<lock_n_pill_manager>();
         anime_mng = GetComponentInChildren<anime_manager>();
         _bg_sound = GetComponentInChildren<bg_sound>();
+        _for_opening = FindObjectOfType<for_opening>();
     }
     
     void Start()
@@ -192,6 +194,7 @@ public class ingame_manager : MonoBehaviour
         game_manager.Instance.save_mng.now_player.is_seconds_capsule = _capsule.is_seconds_in;
         game_manager.Instance.save_mng.now_player.player_pill_part_num = player_mng.pill_part_num;
         game_manager.Instance.save_mng.now_player.tutorial_count_num = tutorial_mng.trigger_num;
+        game_manager.Instance.save_mng.now_player.is_opened = _for_opening.is_opened;
         
         //lock and pill
         //?. 연산자 = Null이 아니라면 참조하고, Null이라면 Null로 처리
@@ -231,6 +234,7 @@ public class ingame_manager : MonoBehaviour
         _capsule.is_seconds_in = game_manager.Instance.save_mng.now_player.is_seconds_capsule;
         player_mng.pill_part_num = game_manager.Instance.save_mng.now_player.player_pill_part_num;
         tutorial_mng.trigger_num = game_manager.Instance.save_mng.now_player.tutorial_count_num;
+        _for_opening.is_opened = game_manager.Instance.save_mng.now_player.is_opened;
 
         //lock and pill
         lock_n_pill_mng.items[0].got_the_pill = game_manager.Instance.save_mng.now_player.area1_pill_get;
@@ -259,7 +263,6 @@ public class ingame_manager : MonoBehaviour
         {
             tutorial_mng.tutorial_colliders[i].SetActive(false);
         }
-
 
         //is_game_starting = false;
         StartCoroutine(co_deley());

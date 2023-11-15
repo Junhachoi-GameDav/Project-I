@@ -9,10 +9,10 @@ public class playerData
 {
     public float player_max_hp =120;
     public float player_cur_hp =120;
-    public float player_max_stemina =150;
-    public float player_attck_power =2;
-    public int player_data_chip =1000;
-    public int player_heal_pack_max_num =4;
+    public float player_max_stemina =130;
+    public float player_attck_power =2.2f;
+    public int player_data_chip =500;
+    public int player_heal_pack_max_num =3;
     public int player_heal_power =40;
     public int player_pill_part_num =0;
     public int player_needed_datachip =0;
@@ -33,6 +33,9 @@ public class playerData
     public bool area4_pill_get;
     public bool area5_pill_get;
     public bool area6_pill_get;
+
+    //public 
+
 
     public bool is_opened;
     public bool is_ending;

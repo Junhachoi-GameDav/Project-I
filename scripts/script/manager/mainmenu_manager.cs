@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Collections;
-using System.IO;
 
 public class mainmenu_manager : MonoBehaviour
 {
@@ -52,11 +51,12 @@ public class mainmenu_manager : MonoBehaviour
         yield return yield_cache.WaitForSeconds(1f);
         SceneManager.LoadScene(num);
     }
-
-    private void Start()
+    
+    private void Awake()
     {
         if(!game_manager.Instance.is_apply_window_open)
         {
+            game_manager.Instance.key_mng.key_apply();
             Invoke("deley", 1f);
         }
     }
